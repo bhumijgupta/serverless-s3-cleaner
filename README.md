@@ -25,4 +25,4 @@ The function can be triggered by
 `sls deploy -v`
 
 <hr>
-Made with :love:
+Made with :heart:
