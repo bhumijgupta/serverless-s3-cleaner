@@ -7,10 +7,8 @@ provider:
   profile: serverless-admin
   iamRoleStatements:
     - Effect: "Allow"
-      Action:
-        - "s3:*"
-      Resource:
-        - "arn:aws:s3:::cert-s3-bucket"
+      Action: "*"
+      Resource: "arn:aws:s3:::cert-s3-bucket"
 
 functions:
   s3-cleaner:
@@ -20,7 +18,7 @@ functions:
           path: s3Cleaner
           method: get
           cors: true
-      - schedule: rate(7 days)
+      - schedule: rate(1 day)
 
 plugins:
   - serverless-offline

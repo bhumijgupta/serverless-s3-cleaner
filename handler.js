@@ -39,13 +39,13 @@ module.exports.s3Cleaner = async event => {
     });
     // If no file more than 7 days ols
     if (toBeDeleted.length === 0) {
-      console.log("No item deleted");
+      console.log("Msg: No item deleted");
       return {
         statusCode: 200,
         body: "No item deleted"
       };
     }
-    console.log(toBeDeleted);
+    console.log("toBeDeleted", toBeDeleted);
     var params = {
       Bucket: "cert-s3-bucket",
       Delete: {
@@ -55,13 +55,13 @@ module.exports.s3Cleaner = async event => {
     s3.deleteObjects(params, (err, succ) => {
       if (err) console.log("err: ", err);
       else {
-        console.log(succ);
+        console.log("deleteObjects: ", succ);
+        return {
+          statusCode: 200,
+          body: "Finished Execution"
+        };
       }
     });
-    return {
-      statusCode: 200,
-      body: "Finished Execution"
-    };
   } catch (err) {
     return { statusCode: 500, body: err };
   }
